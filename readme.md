@@ -1,4 +1,5 @@
 # AI Transformation 最佳实践
+![AI Transformation Banner](./images/banner.png)
 
 欢迎来到AI Transformation最佳实践的GitHub仓库！本仓库旨在分享和推广在AI项目中取得成功的最佳实践和经验教训。无论你是AI领域的新手还是经验丰富的专家，这里都有你需要的资源和指导。
 
@@ -15,4 +16,3 @@
 ## 贡献
 
 我们欢迎社区的贡献！如果你有成功的AI项目经验或有用的资源，欢迎提交Pull Request，与大家分享你的智慧。
-
