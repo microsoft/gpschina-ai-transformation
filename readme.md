@@ -12,7 +12,7 @@
 - **案例研究**：详细介绍成功的AI项目，包括项目背景、挑战、解决方案和结果。
 - **Dify on Azure技术实践**：提供关于AI模型开发、训练和部署的详细指南和教程。
   - Dify是一个开源的LLM（大型语言模型）应用开发平台，提供从Agent构建到AI工作流编排、RAG检索、模型管理等多种功能，帮助开发者轻松构建生成式AI应用。
-  - 体验Azure上部署的Dify：http://dify-gpschina.eastus2.cloudapp.azure.com/
+  - 体验Azure上部署的Dify：http://dify-gpschina.eastus2.cloudapp.azure.com/ 登陆用户名/密码(无编辑权限)：dify2@gmail.com/dify1234
   - 在Azure上部署Didy参考：https://github.com/teo-ma/DifyOnAzure
 
 - **工具和资源**：分享有用的工具、库和数据集，帮助你加速AI项目的开发。
