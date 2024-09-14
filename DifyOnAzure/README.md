@@ -77,7 +77,7 @@
 
 
 
-## 在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量。
+## 在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量，文件路径：DifyOnAzure/environments/dev-variables.tfvars。
 
 在 dev-variables.tfvars 文件中，定义了6个变量：
 
