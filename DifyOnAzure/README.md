@@ -10,9 +10,9 @@
 
 # Dify on Azure部署指南
 
-## 章节-：前提条件
+## 章节一：前提条件
 - 操作系统管理员权限
-- azure订阅，使用者具有订阅**Owner**的角色
+- azure订阅（本部署指南针对Azure Global环境，如使用Azure中国世纪互联运营公有云需要对部署环境和参数进行修改），使用者需具有**订阅Owner**的角色
 - 已安装git命令行或VS Code（用于克隆Dify on Azure部署代码仓库）
 - 已安装Terraform，若没有安装的话，请参考Windows上安装步骤Terraform进行安装。
 - 已安装Azure CLI，若没有安装的话，请参考Windows上安装Azure CLI指南进行安装。
@@ -140,20 +140,20 @@ sp-tenant-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：chart = "./helm-release/dify-helm/charts/dify"**
 
 ## 使用terraform将dify部署到Azure
-- 通过运行“terraform init”初始化 **Terraform**。
+- 1.通过运行“terraform init”初始化 **Terraform**。
 
 ```bash
 
 terraform init
 
 ```
-- 通过运行以下**terraform plan**为开发环境生成计划。
+- 2.通过运行以下**terraform plan**为开发环境生成计划。
 ```bash
 
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 
 ```
-- 通过运行以下**terraform apply**命令应用生成的计划。
+- 3.通过运行以下**terraform apply**命令应用生成的计划。
 ```bash
 
 terraform apply "dev-plan"
