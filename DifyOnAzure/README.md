@@ -10,12 +10,34 @@
 
 # Dify on Azure部署指南
 
-## 前提条件
+## 章节-：前提条件
 - 操作系统管理员权限
+- azure订阅，使用者具有订阅**Owner**的角色
+- 已安装git命令行或VS Code（用于克隆Dify on Azure部署代码仓库）
 - 已安装Terraform，若没有安装的话，请参考Windows上安装步骤Terraform进行安装。
 - 已安装Azure CLI，若没有安装的话，请参考Windows上安装Azure CLI指南进行安装。
+  
+## 章节二：克隆Dify on Azure 部署代码仓库
+  
 
-## Windows上安装步骤Terraform（如已安装可以略过该步骤）
+ - 1. 打开命令行终端或Git Bash。
+ - 2. 导航到您希望存储代码仓库的目录。
+ - 3. 运行以下任意命令来克隆代码仓库（两个repo内容一致，中国建议选择gitee）：
+  从github克隆：
+    ```sh
+    git clone https://github.com/microsoft/gpschina-ai-transformation.git
+    ```
+    或者从gitee克隆：
+    ```sh
+    git clone https://gitee.com/microsoft-gps-csa-tech-stack/gpschina-ai-transformation.git
+    ```  
+
+    
+ - 4. 等待克隆过程完成。现在，您已成功克隆了Dify on Azure部署代码仓库到您的本地计算机。
+
+  
+
+## 章节三：Windows上安装步骤Terraform（如已安装可以略过该步骤）
 
 ### 1. 下载Terraform
 - a. 打开浏览器，访问[Terraform下载页面](https://www.terraform.io/downloads.html)。
@@ -44,7 +66,7 @@
 
 
 
-## Windows上安装Azure CLI指南（如已安装可以略过该步骤）
+## 章节四：Windows上安装Azure CLI指南（如已安装可以略过该步骤）
 
 ### 1. 下载Azure CLI安装程序
 - a. 打开浏览器，访问[Azure CLI下载页面](https://docs.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli)。
@@ -77,17 +99,17 @@
 
 
 
-## 在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量，文件路径：DifyOnAzure/environments/dev-variables.tfvars。
+## 章节五：配置Terraform部署变量
 
-在 dev-variables.tfvars 文件中，定义了6个变量：
+### 1.在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量，文件路径：DifyOnAzure/environments/dev-variables.tfvars。在 dev-variables.tfvars 文件中，定义了6个变量：
 
 - sp-subscription-id Azure订阅ID
 - sp-client-id：这是服务主体的客户端 ID。它是一个唯一标识符，用于标识特定的服务主体。
 - sp-client-secret：这是服务主体的客户端密钥。它类似于密码，用于验证服务主体的身份。这个值应当保密，不应公开。
 - sp-tenant-id：这是租户 ID。它标识了 Azure Active Directory (AAD) 中的特定租户，通常用于多租户环境中区分不同的组织或用户组。
-- name：Dify平台的名字，用于创建或定义多个服务的名字（比如Azure资源组，Azure Private DNS zone等），需要全球唯一。
-- filename ：指定您的本地电脑中存储AKS凭据文件kubeconfig的路径
-### 1.  执行下列命令，创建服务主体（service principal），根据您的azure环境修改命令中的参数
+- name：Dify平台的名字，用于创建或定义多个服务的名字（比如Azure资源组，Azure Private DNS zone等），需要全球唯一，建议按**公司缩略名加数字**来配置,例如:MSFT331。
+- filename ：指定您的本地电脑中存储AKS凭据文件kubeconfig的路径（在Windows本地电脑中，存储Azure Kubernetes Service凭据文件kubeconfig的路径通常是用户的主目录下的.kube文件夹。例如：C:\Users\JohnDoe\.kube\config）
+### 2.  执行下列命令，创建服务主体（service principal），根据您的azure环境修改命令中的参数
 ```bash
 az login
 az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --scopes /subscriptions/<your-subscription-id>
@@ -96,7 +118,7 @@ az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --sco
 
 ```
 
-### 2.执行上述命令后，你将获得一个 JSON 响应，其中包含 appId（即 sp-client-id）、password（即 sp-client-secret）和 tenant（即 sp-tenant-id）。
+### 3.执行上述命令后，你将获得一个 JSON 响应，其中包含 appId（即 sp-client-id）、password（即 sp-client-secret）和 tenant（即 sp-tenant-id）。
 
 示例输出：
 ```bash
@@ -108,7 +130,7 @@ az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --sco
   "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
-### 3.将这些值填入你的 dev-variables.tfvars 文件中：（appId即sp-client-id，password即sp-client-secret，tenant即sp-tenant-id）
+### 4.将这些值填入你的 dev-variables.tfvars 文件中：（appId即sp-client-id，password即sp-client-secret，tenant即sp-tenant-id）
 ```bash
 sp-client-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 sp-client-secret = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -137,12 +159,12 @@ terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 terraform apply "dev-plan"
 ```
 
-## 部署后的配置
+## 章节六：部署后的配置
 - 1.现在，您已经成功在Azure上部署了Dify，接下来登陆Azure门户，从刚刚创建的资源组中找到Azure Kubernetes Service集群，并打开它。
 ![AKS](./images/aks.png)
 - 2.按图示找到您在azure上部署的Dify的公网地址。
 ![IP](./images/ip-address.png)
-- 3.点击ingress的IP 地址，将会在浏览器中显示Dify。第一次使用请设置账户信息
+- 3.点击ingress的IP 地址，将会在浏览器中显示Dify。第一次使用请设置账户信息。
 ![dify-logon](./images/dify-logon.png)
-- 4.登陆后可以开始使用Dify了！
+- 4.登陆后可以开始使用Dify了！接着按Dify应用开发文档开始体验LLM应用开发。
 ![dify-ui](./images/dify-ui.png)
