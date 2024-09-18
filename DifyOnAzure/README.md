@@ -14,8 +14,8 @@
 - 操作系统管理员权限
 - azure订阅（本部署指南针对Azure Global环境，如使用Azure中国世纪互联运营公有云需要对部署环境和参数进行修改），使用者需具有**订阅Owner**的角色
 - 已安装git命令行或VS Code（用于克隆Dify on Azure部署代码仓库）
-- 已安装Terraform，若没有安装的话，请参考Windows上安装步骤Terraform进行安装。
-- 已安装Azure CLI，若没有安装的话，请参考Windows上安装Azure CLI指南进行安装。
+- 已安装Terraform，若没有安装的话，请参考**章节三：Windows上安装步骤Terraform**进行安装。
+- 已安装Azure CLI，若没有安装的话，请参考**章节四：Windows上安装Azure CLI指南**进行安装。
 - 确认以下provide在你们的azure 订阅下是否注册，通过运行下列命令进行安装（如之前已经安装，再次运行不会有影响）。
     ```sh
     az provider register --namespace Microsoft.ContainerService
