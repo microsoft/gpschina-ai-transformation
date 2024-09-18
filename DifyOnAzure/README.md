@@ -22,6 +22,7 @@
     az provider register --namespace Microsoft.Network
     az provider register --namespace Microsoft.DBforPostgreSQL
     az provider register --namespace Microsoft.Cache
+    az provider register --namespace Microsoft.Storage
     ```
   
 ## 章节二：克隆Dify on Azure 部署代码仓库
