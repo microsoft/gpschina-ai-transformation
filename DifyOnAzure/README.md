@@ -174,5 +174,11 @@ terraform apply "dev-plan"
 ![IP](./images/ip-address.png)
 - 3.点击ingress的IP 地址，将会在浏览器中显示Dify。第一次使用请设置账户信息。
 ![dify-logon](./images/dify-logon.png)
-- 4.登陆后可以开始使用Dify了！接着按Dify应用开发文档开始体验LLM应用开发。
+- 4.如希望借助Azure临时域名访问dify，可以在该public ip上配置DNS name。在Azure上成功部署Dify会创建两个Azure资源组，在门户上点击MC_开头的azure资源组，找到以-appgwpip名字结尾的public IP地址，点击进入。
+  ![publicip](./images/publicip.png)
+- 5.按照如下图示，配置DNS name label.
+  ![dnsname](./images/dnsname.png)
+- 6.在该公共public ip的overview tab页面，找到访问dify的域名，使用该域名（DNS name）访问dify（例如：http://xxx.dify-gpschina.eastus2.cloudapp.azure.com）。如需使用https，可以近一步自行配置证书。
+  ![dns-visit](./images/dns-visit.png)
+- 7.登陆后可以开始使用Dify了！接着按Dify应用开发文档开始体验LLM应用开发。
 ![dify-ui](./images/dify-ui.png)
